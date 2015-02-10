@@ -6,7 +6,7 @@ let genLists lst =
 let mirror lst =
   match lst with
    | [] -> []
-   | h::t -> List.rev t @ [h] @ t
+   | h::t -> List.rev t @ lst
 
 let diamond letters =
   letters |> 
