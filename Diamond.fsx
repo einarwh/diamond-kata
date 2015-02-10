@@ -18,10 +18,9 @@ let mirr lst =
 let diamond letters =
   letters |> 
   genLists |> 
-  List.map (fun a -> Array.ofList(mirr a)) |> 
+  List.map (fun a -> new string(Array.ofList(mirr a))) |> 
   List.rev |> 
   mirr |> 
-  List.map (fun x -> new string(x)) |>
   String.concat "\n"
 
 diamond ['A' .. 'F'] |> printfn "%s"
