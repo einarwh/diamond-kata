@@ -4,13 +4,13 @@ let rec genList lst ix =
   match lst with
    | [] -> []
    | h::t ->
-     let c = if ix = 0 then h else '.'
-     c :: genList t (ix - 1)
+     let c = if ix = 1 then h else '.'
+	 c :: genList t (ix - 1)
 
 let genLists lst =
-  [ for x in 0 .. (List.length lst) - 1 do yield genList lst x ]
+  [ for x in 1 .. List.length lst do yield genList lst x ]
 
-let mirror lst =
+let mirr lst =
   match lst with
    | [] -> []
    | h::t -> List.rev t @ [h] @ t
@@ -18,10 +18,10 @@ let mirror lst =
 let diamond letters =
   letters |> 
   genLists |> 
-  List.map (fun a -> Array.ofList(mirror a)) |> 
+  List.map (fun a -> Array.ofList(mirr a)) |> 
   List.rev |> 
-  mirror |> 
+  mirr |> 
   List.map (fun x -> new string(x)) |>
   String.concat "\n"
 
-diamond ['A' .. 'Z'] |> printfn "%s"
+diamond ['A' .. 'F'] |> printfn "%s"
