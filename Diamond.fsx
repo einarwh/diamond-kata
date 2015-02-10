@@ -9,11 +9,13 @@ let mirror lst =
    | h::t -> List.rev t @ lst
 
 let diamond letters =
-  letters |> 
-  genLists |> 
-  List.map (fun a -> new string(Array.ofList(mirror a))) |> 
-  List.rev |> 
-  mirror |> 
-  String.concat "\n"
+  letters |> genLists 
+          |> List.rev 
+          |> List.map (fun a -> mirror a) 
+          |> mirror 
 
-diamond ['A' .. 'Z'] |> printfn "%s"
+let toStr d =
+  d |> List.map (fun a -> new string(Array.ofList(a))) 
+    |> String.concat "\n"
+
+['A' .. 'Z'] |> diamond |> toStr |> printfn "%s"
