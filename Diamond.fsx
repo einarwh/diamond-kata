@@ -10,8 +10,8 @@ let mirror lst =
 
 let diamond letters =
   letters |> genLists 
-          |> List.rev 
           |> List.map (fun a -> mirror a) 
+          |> List.rev 
           |> mirror 
 
 let toStr d =
